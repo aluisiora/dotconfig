@@ -1,6 +1,6 @@
-*
+/*
 !.gitignore
-!/nvim/
+!nvim/
 !zsh/
 !tmux/
 !ghostty/
