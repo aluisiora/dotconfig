@@ -54,6 +54,7 @@
     playerctl
     unzip
     zip
+    rar
     psmisc
     btop
     fzf

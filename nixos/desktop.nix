@@ -27,6 +27,9 @@
             color-scheme = "prefer-dark";
             gtk-theme = "Adwaita";
             icon-theme = "Adwaita";
+            font-name = "Lato Regular 11";
+            document-font-name = "Lato Regular 11";
+            monospace-font-name = "Fira Mono Medium 13";
           };
         };
       }
@@ -83,13 +86,15 @@
     flameshot
     keepassxc
     nwg-look
+    file-roller
   ];
 
   fonts.enableDefaultPackages = true;
   fonts.fontconfig = {
+    enable = true;
     defaultFonts = {
-      serif = [ "Liberation Serif 8pt" ];
-      sansSerif = [ "Lato Sans 8pt" ];
+      serif = [ "Liberation Serif" ];
+      sansSerif = [ "Lato Regular" ];
       monospace = [ "Fira Code Mono" ];
     };
   };
