@@ -81,6 +81,8 @@
     ghostty
     nautilus
     flameshot
+    keepassxc
+    nwg-look
   ];
 
   fonts.enableDefaultPackages = true;

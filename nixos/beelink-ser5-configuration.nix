@@ -21,20 +21,10 @@
   boot.initrd = 
     { systemd.enable = true;
       verbose = false;
-      availableKernelModules = [ "amdgpu" "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+      availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
       kernelModules = [ "dm-snapshot" ];
       luks.devices."root-nvme".device = "/dev/disk/by-uuid/1c9c2d27-ebeb-4069-9bfc-9f98052ee4c3";
       luks.devices."root-sata".device = "/dev/disk/by-uuid/8dba8988-0ca0-4d99-b864-cd531c2c802d";
-    };
-
-  boot.plymouth =
-    { enable = true;
-      theme = "tech_b";
-      themePackages = with pkgs; [
-        (adi1090x-plymouth-themes.override {
-	        selected_themes = [ "tech_b" ];
-	      })
-      ];
     };
 
   boot.bootspec.enable = true;
@@ -42,11 +32,6 @@
   boot.consoleLogLevel = 3;
   boot.kernelModules = [ "kvm-amd" ];
   boot.kernelParams = [
-    "quiet"
-    "splash"
-    "boot.shell_on_fail"
-    "udev.log_priority=3"
-    "rd.systemd.show_status=auto"
     "zswap.enabled=1"
     "zswap.compressor=lz4"
     "zswap.max_pool_percent=20"
