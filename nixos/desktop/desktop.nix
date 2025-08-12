@@ -1,11 +1,9 @@
+{ config, lib, pkgs, ... }:
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-{
+  imports = [ ./caelestia-quickshell.nix ];
+
   environment.variables = {
+    NIXOS_OZONE_WL = "1";
     SDL_VIDEODRIVER = "wayland";
     QT_QPA_PLATFORM = "wayland";
     MOZ_ENABLE_WAYLAND = "1";
@@ -64,28 +62,24 @@
   services.displayManager.ly.enable = true;
 
   environment.systemPackages = with pkgs; [
-    tofi
-    wofi
-    waybar
     hyprpaper
-    hyprshot
     hyprpicker
-    swaynotificationcenter
-    pavucontrol
+    hyprshot
+    tesseract
     gnome-themes-extra
+    gnome-keyring
     libsForQt5.qt5ct
     adwaita-qt
-    catppuccin-sddm
     hicolor-icon-theme
-    grim
     wlogout
+    wl-clipboard
+    wf-recorder
 
     # Apps
     ghostty
     nautilus
     flameshot
     keepassxc
-    nwg-look
     file-roller
   ];
 
@@ -109,9 +103,6 @@
     jetbrains-mono
     open-sans
     liberation_ttf
-    font-awesome
-    pango
-    nerd-fonts.fantasque-sans-mono
 
     # Windows fonts
     corefonts

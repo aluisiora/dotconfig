@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 {
   environment.variables = {
-    GDK_SCALE = "2";
-    QT_SCALE_FACTOR = "2";
-    _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+    # GDK_SCALE = "2";
+    # QT_SCALE_FACTOR = "2";
+    # _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
   };
 
   services.xserver.dpi = 218;

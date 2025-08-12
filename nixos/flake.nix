@@ -11,7 +11,7 @@
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
-        ./desktop.nix
+        ./desktop/desktop.nix
         ./apple-studio-display.nix
       	./beelink-ser5-configuration.nix
 	      lanzaboote.nixosModules.lanzaboote

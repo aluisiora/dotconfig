@@ -27,7 +27,7 @@
   users.defaultUserShell = pkgs.zsh;
   users.users.aluisio = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "docker" ];
+    extraGroups = [ "wheel" "networkmanager" "video" "input" "docker" ];
   };
 
   environment.variables = {
@@ -46,6 +46,8 @@
     lazygit
 
     # CLI apps
+    coreutils
+    findutils
     distrobox
     git
     wget
@@ -60,6 +62,8 @@
     fzf
     fd
     ripgrep
+    rsync
+    file
 
     # Dev
     gnumake
@@ -67,6 +71,7 @@
     cargo
     nil
     lua51Packages.luarocks
+    nodejs_24
   ];
 
   programs.zsh.enable = true;
