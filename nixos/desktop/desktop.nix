@@ -6,7 +6,10 @@
   ...
 }:
 {
-  imports = [ ./end4-quickshell.nix ];
+  imports = [
+    ./plymouth.nix
+    ./end4-quickshell.nix
+  ];
 
   environment.variables = {
     NIXOS_OZONE_WL = "1";
