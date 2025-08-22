@@ -614,6 +614,9 @@ later(function()
   -- lang.nix
   vim.lsp.enable("nil_ls")
 
+  -- lang.qml
+  vim.lsp.enable("qmlls")
+
   -- lang.flutter
   if has("flutter") then
     require("flutter-tools").setup({
