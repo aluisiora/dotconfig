@@ -1,6 +1,12 @@
-{ config, lib, pkgs, ... }:
 {
-  imports = [ ./caelestia-quickshell.nix ];
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+{
+  imports = [ ./end4-quickshell.nix ];
 
   environment.variables = {
     NIXOS_OZONE_WL = "1";
@@ -48,42 +54,40 @@
       xdg-desktop-portal-wlr
     ];
   };
+  xdg.mime = {
+    enable = true;
+    defaultApplications = {
+      "default-web-browser" = [ "google-chrome.desktop" ];
+      "text/html" = [ "google-chrome.desktop" ];
+      "text/xml" = [ "google-chrome.desktop" ];
+      "application/pdf" = [ "google-chrome.desktop" ];
+      "x-scheme-handler/http" = [ "google-chrome.desktop" ];
+      "x-scheme-handler/https" = [ "google-chrome.desktop" ];
+      "x-scheme-handler/xhtml+xml" = [ "google-chrome.desktop" ];
+      "x-scheme-handler/about" = [ "google-chrome.desktop" ];
+      "x-scheme-handler/unknown" = [ "google-chrome.desktop" ];
+    };
+  };
 
   services.xserver.enable = true;
   services.hypridle.enable = true;
   services.gvfs.enable = true;
+  services.dbus.enable = true;
 
-  # services.displayManager.sddm =
-  #   { enable = true;
-  #     # wayland.enable = true;
-  #     theme = "catppuccin-mocha";
-  #     package = pkgs.kdePackages.sddm;
-  #   };
-  services.displayManager.ly.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    hyprpaper
-    hyprpicker
-    hyprshot
-    tesseract
-    gnome-themes-extra
-    gnome-keyring
-    libsForQt5.qt5ct
-    adwaita-qt
-    hicolor-icon-theme
-    wlogout
-    wl-clipboard
-    wf-recorder
-
-    # Apps
-    ghostty
-    nautilus
-    flameshot
-    keepassxc
-    file-roller
-  ];
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    theme = "sddm-astronaut-theme";
+    package = pkgs.kdePackages.sddm;
+    extraPackages = with pkgs; [
+      kdePackages.qtsvg
+      kdePackages.qtmultimedia
+      kdePackages.qtvirtualkeyboard
+    ];
+  };
 
   fonts.enableDefaultPackages = true;
+  fonts.fontDir.enable = true;
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
@@ -107,5 +111,45 @@
     # Windows fonts
     corefonts
     vista-fonts
+  ];
+
+  environment.systemPackages = with pkgs; [
+    hyprpaper
+    hyprpicker
+    hyprshot
+    gnome-themes-extra
+    gnome-keyring
+    libsForQt5.qt5ct
+    kdePackages.qt6ct
+    adwaita-qt
+    hicolor-icon-theme
+    wl-clipboard
+    wf-recorder
+    xdg-user-dirs
+    xdg-user-dirs-gtk
+
+    # SDDM
+    (sddm-astronaut.override { embeddedTheme = "japanese_aesthetic"; })
+
+    # Apps
+    google-chrome
+    ghostty
+    nautilus
+    flameshot
+    keepassxc
+    file-roller
+    gnome-font-viewer
+    slack
+
+    # Panel
+    kdePackages.qtbase
+    kdePackages.qtdeclarative
+    kdePackages.qtsvg
+    kdePackages.qtwayland
+    # inputs.quickshell.packages.${pkgs.system}.default
+    (inputs.quickshell.packages.${pkgs.system}.default.override {
+      withX11 = false;
+      withI3 = false;
+    })
   ];
 }

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   environment.variables = {
     # GDK_SCALE = "2";
@@ -8,6 +13,11 @@
 
   services.xserver.dpi = 218;
   services.displayManager.sddm.enableHidpi = true;
+  services.displayManager.sddm.settings = {
+    General = {
+      GreeterEnvironment = "QT_SCREEN_SCALE_FACTORS=2";
+    };
+  };
 
   fonts.fontconfig = {
     enable = true;
@@ -15,10 +25,6 @@
     subpixel.lcdfilter = "none";
     subpixel.rgba = "none";
   };
-
-  environment.systemPackages = with pkgs; [
-    ddcutil
-  ];
 
   hardware.i2c.enable = true;
 }

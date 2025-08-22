@@ -7,6 +7,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.optimise.automatic = true;
   nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "mio";
@@ -59,11 +60,13 @@
     rar
     psmisc
     btop
+    jq
     fzf
     fd
     ripgrep
     rsync
     file
+    gemini-cli
 
     # Dev
     gnumake
