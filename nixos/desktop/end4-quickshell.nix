@@ -13,6 +13,10 @@
   services.geoclue2.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
+  qt.enable = lib.mkForce true;
+  qt.platformTheme = lib.mkForce "qt5ct";
+  qt.style = lib.mkForce "kvantum";
+
   fonts.packages = with pkgs; [
     nerd-fonts.ubuntu
     nerd-fonts.ubuntu-mono
@@ -69,7 +73,6 @@
     # wtype
     # ydotool
     hyprpicker
-    hyprshot
 
     # Widgets
     # glib
