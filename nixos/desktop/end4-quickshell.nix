@@ -59,6 +59,7 @@
     wireplumber
     libdbusmenu-gtk3
     playerctl
+    easyeffects
 
     # Backlight
     brightnessctl
@@ -67,6 +68,8 @@
     # Toolkit
     # wtype
     # ydotool
+    hyprpicker
+    hyprshot
 
     # Widgets
     # glib

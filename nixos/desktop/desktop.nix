@@ -137,9 +137,6 @@
 
   environment.systemPackages = with pkgs; [
     rose-pine-cursor
-    hyprpaper
-    hyprpicker
-    hyprshot
     gnome-themes-extra
     libsForQt5.qt5ct
     kdePackages.qt6ct
@@ -147,7 +144,6 @@
     kdePackages.breeze-icons
     adwaita-qt
     hicolor-icon-theme
-    wf-recorder
     xdg-user-dirs
     xdg-user-dirs-gtk
     xsettingsd
