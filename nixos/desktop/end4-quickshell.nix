@@ -6,8 +6,12 @@
   ...
 }:
 {
+  i18n.inputMethod.type = "fcitx5";
+  i18n.inputMethod.fcitx5.waylandFrontend = true;
+
   services.upower.enable = true;
   services.geoclue2.enable = true;
+  services.gnome.gnome-keyring.enable = true;
 
   fonts.packages = with pkgs; [
     nerd-fonts.ubuntu
@@ -61,7 +65,7 @@
 
     # Widgets
     # glib
-    swww
+    # swww
     translate-shell
     wlogout
 
@@ -73,6 +77,7 @@
     jq
     fuzzel
     matugen
+    wl-clipboard
     # libsoup_3
     # libportal-gtk4
     # gobject-introspection

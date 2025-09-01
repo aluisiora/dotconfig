@@ -76,10 +76,21 @@
   services.hypridle.enable = true;
   services.gvfs.enable = true;
   services.dbus.enable = true;
+  services.gnome.gnome-keyring.enable = true;
 
+  # Turn display off
+  services.xserver.displayManager.setupCommands = ''
+    # Load cursor settings into the X server's resource database
+    ${pkgs.xorg.xrdb}/bin/xrdb -merge - <<EOF
+    Xcursor.theme: Bibata-Modern-Classic
+    Xcursor.size: 48
+    EOF
+
+    ${pkgs.xorg.xset}/bin/xset s 30 30
+    ${pkgs.xorg.xset}/bin/xset dpms 30 30 30
+  '';
   services.displayManager.sddm = {
     enable = true;
-    wayland.enable = true;
     theme = "sddm-astronaut-theme";
     package = pkgs.kdePackages.sddm;
     extraPackages = with pkgs; [
@@ -117,19 +128,20 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    bibata-cursors
     hyprpaper
     hyprpicker
     hyprshot
     gnome-themes-extra
-    gnome-keyring
     libsForQt5.qt5ct
     kdePackages.qt6ct
     adwaita-qt
     hicolor-icon-theme
-    wl-clipboard
     wf-recorder
     xdg-user-dirs
     xdg-user-dirs-gtk
+    xsettingsd
+    xorg.xrdb
 
     # SDDM
     (sddm-astronaut.override { embeddedTheme = "japanese_aesthetic"; })
@@ -149,7 +161,6 @@
     kdePackages.qtdeclarative
     kdePackages.qtsvg
     kdePackages.qtwayland
-    # inputs.quickshell.packages.${pkgs.system}.default
     (inputs.quickshell.packages.${pkgs.system}.default.override {
       withX11 = false;
       withI3 = false;
