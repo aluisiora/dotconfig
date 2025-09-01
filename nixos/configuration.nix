@@ -14,7 +14,9 @@
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/Sao_Paulo";
+
   i18n.defaultLocale = "en_US.UTF-8";
+
   services.pipewire = {
     enable = true;
     pulse.enable = true;
@@ -84,6 +86,10 @@
   virtualisation.docker.enableOnBoot = true;
 
   services.openssh.enable = true;
+
+  nix.gc.automatic = true;
+  nix.gc.dates = "daily";
+  nix.gc.options = "--delete-older-than 10d";
 
   system.stateVersion = "25.05"; 
 }
