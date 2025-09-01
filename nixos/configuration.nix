@@ -6,8 +6,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.optimise.automatic = true;
   nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "mio";
@@ -47,6 +45,7 @@
     neovim
     yazi
     lazygit
+    bluetui
 
     # CLI apps
     coreutils
@@ -86,6 +85,9 @@
   virtualisation.docker.enableOnBoot = true;
 
   services.openssh.enable = true;
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.optimise.automatic = true;
 
   nix.gc.automatic = true;
   nix.gc.dates = "daily";

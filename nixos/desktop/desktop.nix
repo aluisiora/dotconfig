@@ -46,7 +46,7 @@
   qt = {
     enable = true;
     platformTheme = "qt5ct";
-    style = "adwaita-dark";
+    style = "breeze";
   };
 
   xdg.portal = {
@@ -78,11 +78,19 @@
   services.dbus.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
-  # Turn display off
+  services.xserver = {
+    xkb = {
+      layout = "us,us";
+      variant = ",intl";
+      options = "";
+    };
+  };
+
+  # Set cursor and turn display off
   services.xserver.displayManager.setupCommands = ''
     # Load cursor settings into the X server's resource database
     ${pkgs.xorg.xrdb}/bin/xrdb -merge - <<EOF
-    Xcursor.theme: Bibata-Modern-Classic
+    Xcursor.theme: BreezeX-RosePine-Linux
     Xcursor.size: 48
     EOF
 
@@ -128,13 +136,15 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    bibata-cursors
+    rose-pine-cursor
     hyprpaper
     hyprpicker
     hyprshot
     gnome-themes-extra
     libsForQt5.qt5ct
     kdePackages.qt6ct
+    kdePackages.breeze
+    kdePackages.breeze-icons
     adwaita-qt
     hicolor-icon-theme
     wf-recorder
@@ -148,6 +158,7 @@
 
     # Apps
     google-chrome
+    ytmdesktop
     ghostty
     nautilus
     flameshot

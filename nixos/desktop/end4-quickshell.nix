@@ -45,6 +45,11 @@
     kdePackages.syntax-highlighting
     kdePackages.plasma-workspace
     kdePackages.plasma-systemmonitor
+    kdePackages.bluedevil
+    kdePackages.bluez-qt
+    kdePackages.plasma-nm
+    kdePackages.kwallet
+    kdePackages.polkit-kde-agent-1
 
     (callPackage ./oneui4-icons.nix { })
 
@@ -83,9 +88,6 @@
     # gobject-introspection
     # sassc
     # opencv
-    # kdePackages.bluedevil
-    # kdePackages.plasma-nm
-    # kdePackages.polkit-kde-agent-1
     python313Packages.kde-material-you-colors
     (python3.withPackages (
       python-pkgs: with python-pkgs; [
