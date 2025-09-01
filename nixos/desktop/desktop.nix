@@ -8,7 +8,7 @@
 {
   imports = [
     ./plymouth.nix
-    ./caelestia-shell.nix
+    ./end4-quickshell.nix
   ];
 
   environment.variables = {

@@ -6,6 +6,10 @@
   ...
 }:
 {
+  environment.variables = {
+    PRECONFIGURED_SHELL = "ii";
+  };
+
   i18n.inputMethod.type = "fcitx5";
   i18n.inputMethod.fcitx5.waylandFrontend = true;
 
