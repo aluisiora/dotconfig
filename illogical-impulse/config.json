@@ -78,7 +78,7 @@
         "cornerStyle": 1,
         "resources": {
             "alwaysShowCpu": true,
-            "alwaysShowSwap": false
+            "alwaysShowSwap": true
         },
         "screenList": [
         ],
@@ -108,7 +108,7 @@
             "alwaysShowNumbers": false,
             "monochromeIcons": true,
             "showAppIcons": true,
-            "showNumberDelay": 300,
+            "showNumberDelay": 150,
             "shown": 10
         }
     },
