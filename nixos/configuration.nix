@@ -79,6 +79,7 @@
   ];
 
   programs.zsh.enable = true;
+  programs.direnv.enable = true;
   programs.nix-ld.enable = true;
 
   virtualisation.docker.enable = true;
