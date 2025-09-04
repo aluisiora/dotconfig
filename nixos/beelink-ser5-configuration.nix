@@ -14,7 +14,10 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  environment.systemPackages = [ pkgs.sbctl ];
+  environment.systemPackages = with pkgs; [
+    sbctl
+    lz4
+  ];
 
   boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.timeout = 1;
