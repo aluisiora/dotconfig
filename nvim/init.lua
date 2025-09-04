@@ -416,7 +416,7 @@ later(function()
     lua = { "luacheck" },
   }
 
-  vim.api.nvim_create_autocmd("BufWritePost", {
+  vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
     group = augroup("lint"),
     callback = function() lint.try_lint() end,
   })
