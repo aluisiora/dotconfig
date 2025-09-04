@@ -73,6 +73,13 @@
     brightnessctl
     ddcutil
 
+    # Screenshot
+    hyprshot
+    slurp
+    swappy
+    tesseract
+    wf-recorder
+
     # Toolkit
     # wtype
     # ydotool
