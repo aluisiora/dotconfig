@@ -45,6 +45,7 @@
     neovim
     yazi
     lazygit
+    lazydocker
     bluetui
 
     # CLI apps
@@ -79,8 +80,9 @@
   ];
 
   programs.zsh.enable = true;
-  programs.direnv.enable = true;
   programs.nix-ld.enable = true;
+  programs.direnv.enable = true;
+  programs.direnv.silent = true;
 
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = true;
