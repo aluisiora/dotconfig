@@ -164,6 +164,7 @@
     google-chrome
     ytmdesktop
     ghostty
+    wezterm
     nautilus
     flameshot
     keepassxc
