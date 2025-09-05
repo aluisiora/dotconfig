@@ -379,6 +379,7 @@ later(function()
     go = { "gofumpt" },
     json = { "fixjson" },
     jsonc = { "fixjson" },
+    nix = { "nixfmt" },
   }
 
   if hasprojectfile("pint.json") then formatters.php = { "pint" } end
@@ -612,7 +613,7 @@ later(function()
   vim.lsp.enable("bashls")
 
   -- lang.nix
-  vim.lsp.enable("nil_ls")
+  vim.lsp.enable("nixd")
 
   -- lang.qml
   vim.lsp.enable("qmlls")
