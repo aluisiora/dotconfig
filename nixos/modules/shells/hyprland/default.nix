@@ -1,15 +1,10 @@
 {
-  config,
-  lib,
   pkgs,
   inputs,
   ...
 }:
 {
-  imports = [
-    ./plymouth.nix
-    ./end4-quickshell.nix
-  ];
+  imports = [ ./bars/illogical-impulse ];
 
   environment.variables = {
     NIXOS_OZONE_WL = "1";

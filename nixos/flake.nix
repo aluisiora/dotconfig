@@ -1,5 +1,5 @@
 {
-  description = "NixOS system for Mio";
+  description = "My NixOS system configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -16,26 +16,17 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
-      # pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      nixosConfigurations.mio = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.ocelot = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
-        modules = [
-          ./configuration.nix
-          ./desktop/desktop.nix
-          ./apple-studio-display.nix
-          ./beelink-ser5-configuration.nix
-
-          inputs.lanzaboote.nixosModules.lanzaboote
-        ];
+        modules = [ ./hosts/ocelot/configuration.nix ];
       };
     };
 }

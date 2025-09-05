@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   inputs,
@@ -7,7 +6,7 @@
 }:
 {
   environment.variables = {
-    PRECONFIGURED_SHELL = "ii";
+    WAYLAND_BAR = "ii";
   };
 
   i18n.inputMethod.type = "fcitx5";
@@ -30,10 +29,12 @@
     rubik
     material-symbols
 
-    (callPackage ./gabarito-font.nix { })
+    (callPackage ./pkgs/gabarito-font.nix { })
   ];
   environment.systemPackages = with pkgs; [
     # Dependencies
+    (callPackage ./pkgs/oneui4-icons.nix { })
+
     inputs.quickshell.packages.${pkgs.system}.default
     kdePackages.kdialog
     kdePackages.kcmutils
@@ -58,8 +59,6 @@
     kdePackages.plasma-nm
     kdePackages.kwallet
     kdePackages.polkit-kde-agent-1
-
-    (callPackage ./oneui4-icons.nix { })
 
     # Audio
     cava

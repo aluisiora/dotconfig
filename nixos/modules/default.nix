@@ -1,15 +1,14 @@
-{ config, lib, pkgs, ... }:
 {
-  imports = [ ];
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  pkgs,
+  inputs,
+  ...
+}:
+{
+  imports = [
+    ./shells/hyprland
+  ];
 
   nixpkgs.config.allowUnfree = true;
-
-  networking.hostName = "mio";
-  networking.networkmanager.enable = true;
 
   time.timeZone = "America/Sao_Paulo";
 
@@ -28,7 +27,13 @@
   users.defaultUserShell = pkgs.zsh;
   users.users.aluisio = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "input" "docker" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "video"
+      "input"
+      "docker"
+    ];
   };
 
   environment.variables = {
@@ -47,6 +52,7 @@
     lazygit
     lazydocker
     bluetui
+    duf
 
     # CLI apps
     coreutils
@@ -74,7 +80,8 @@
     gnumake
     gcc
     cargo
-    nil
+    nixd
+    nixfmt-rfc-style
     lua51Packages.luarocks
     nodejs_24
   ];
@@ -89,12 +96,16 @@
 
   services.openssh.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.optimise.automatic = true;
 
   nix.gc.automatic = true;
   nix.gc.dates = "daily";
   nix.gc.options = "--delete-older-than 10d";
 
-  system.stateVersion = "25.05"; 
+  system.stateVersion = "25.05";
 }

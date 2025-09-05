@@ -7,7 +7,7 @@
 }:
 {
   environment.variables = {
-    PRECONFIGURED_SHELL = "caelestia";
+    WAYLAND_BAR = "caelestia";
   };
 
   environment.systemPackages = with inputs; [
