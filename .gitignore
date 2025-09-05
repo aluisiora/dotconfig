@@ -1,6 +1,8 @@
 /*
 !.gitignore
+!.editorconfig
 !nvim/
+!git/
 !zsh/
 !tmux/
 !ghostty/
