@@ -74,6 +74,7 @@
     ripgrep
     rsync
     file
+    diff-so-fancy
     gemini-cli
 
     # Dev
