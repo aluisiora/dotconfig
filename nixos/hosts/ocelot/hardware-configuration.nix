@@ -40,6 +40,7 @@
       "usb_storage"
       "usbhid"
       "sd_mod"
+      "lz4"
     ];
     kernelModules = [ "dm-snapshot" ];
     luks.devices."root-nvme".device = "/dev/disk/by-uuid/1c9c2d27-ebeb-4069-9bfc-9f98052ee4c3";
