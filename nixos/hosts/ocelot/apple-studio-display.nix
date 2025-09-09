@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 {
@@ -27,4 +26,8 @@
   };
 
   hardware.i2c.enable = true;
+
+  systemd.tmpfiles.rules = lib.mkIf config.services.desktopManager.gnome.enable [
+    "L+ /run/gdm/.config/monitors.xml - - - - ${./monitors.xml}"
+  ];
 }

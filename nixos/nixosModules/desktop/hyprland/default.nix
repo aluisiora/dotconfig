@@ -100,15 +100,6 @@
     services.dbus.enable = true;
     services.gnome.gnome-keyring.enable = true;
 
-    services.xserver.enable = true;
-    services.xserver = {
-      xkb = {
-        layout = "us";
-        variant = "intl";
-        options = "";
-      };
-    };
-
     environment.systemPackages = with pkgs; [
       rose-pine-cursor
       gnome-themes-extra

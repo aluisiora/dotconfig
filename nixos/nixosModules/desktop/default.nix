@@ -31,6 +31,14 @@
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
       '';
     };
+    services.xserver.enable = true;
+    services.xserver = {
+      xkb = {
+        layout = "us,us";
+        variant = "intl,";
+        options = "";
+      };
+    };
     fonts.packages = with pkgs; [
       noto-fonts
       noto-fonts-color-emoji
