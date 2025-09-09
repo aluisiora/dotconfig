@@ -6,11 +6,17 @@
   ...
 }:
 {
-  environment.variables = {
-    WAYLAND_BAR = "caelestia";
+  options = {
+    desktop.hyprland.caelestia.enable = lib.mkEnableOption "caelestia shell";
   };
 
-  environment.systemPackages = with inputs; [
-    caelestia.packages.${pkgs.system}.with-cli
-  ];
+  config = lib.mkIf config.desktop.hyprland.caelestia.enable {
+    environment.variables = {
+      WAYLAND_BAR = "caelestia";
+    };
+
+    environment.systemPackages = with inputs; [
+      caelestia.packages.${pkgs.system}.with-cli
+    ];
+  };
 }

@@ -4,10 +4,7 @@
   ...
 }:
 {
-  imports = [
-    ./components/plymouth.nix
-    ./desktop
-  ];
+  imports = [ ./desktop ./components ];
 
   environment.variables = {
     XDG_CONFIG_HOME = "$HOME/.config";
@@ -19,7 +16,26 @@
 
   environment.systemPackages = with pkgs; [
     vim
+    # CLI apps
+    coreutils
+    findutils
+    git
+    wget
     curl
+    unzip
+    zip
+    rar
+    psmisc
+    btop
+    jq
+    fzf
+    fd
+    ripgrep
+    rsync
+    file
+    diff-so-fancy
+    tldr
+    # Misc
     xdg-user-dirs
   ];
 

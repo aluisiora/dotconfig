@@ -8,7 +8,18 @@
 
   # Custom modules
   plymouth.enable = true;
-  desktop.shell = "hyprland";
+  plymouth.theme = "hexagon_dots";
+  desktop = {
+    enable = true;
+    hyprland = {
+      enable = true;
+      illogicalImpulse.enable = true;
+      sddm = {
+        enable = true;
+        theme = "japanese_aesthetic";
+      };
+    };
+  };
 
   # System config
   nixpkgs.config.allowUnfree = true;
@@ -40,35 +51,14 @@
   environment.systemPackages = with pkgs; [
     # TUI apps
     tmux
-    vim
     neovim
     yazi
     lazygit
     lazydocker
-    bluetui
     duf
     # CLI apps
-    coreutils
-    findutils
     distrobox
-    git
-    wget
-    curl
     fastfetch
-    playerctl
-    unzip
-    zip
-    rar
-    psmisc
-    btop
-    jq
-    fzf
-    fd
-    ripgrep
-    rsync
-    file
-    diff-so-fancy
-    tldr
     # Dev
     gnumake
     gcc

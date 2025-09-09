@@ -2,25 +2,23 @@
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }:
 {
+  imports = [
+    ./bars/illogical-impulse
+    ./bars/caelestia.nix
+    ./bars/hyprpanel.nix
+    ./displayManagers/sddm.nix
+  ];
+
   options = {
-    desktop = {
-      hyprland = {
-        enable = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-          description = "Enable custom hyprland configuration";
-        };
-      };
+    desktop.hyprland = {
+      enable = lib.mkEnableOption "hyprland environment";
     };
   };
 
-  config = lib.mkIf config.desktopEnvironment.hyprland.enable {
-    imports = [ ./bars/illogical-impulse ];
-
+  config = lib.mkIf config.desktop.hyprland.enable {
     environment.variables = {
       NIXOS_OZONE_WL = "1";
       SDL_VIDEODRIVER = "wayland";
@@ -33,7 +31,6 @@
       enable = true;
       xwayland.enable = true;
     };
-    programs.firefox.enable = true;
     programs.hyprlock.enable = true;
     programs.dconf = {
       enable = true;
@@ -52,6 +49,23 @@
         }
       ];
     };
+
+    fonts.enableDefaultPackages = true;
+    fonts.fontDir.enable = true;
+    fonts.fontconfig = {
+      enable = true;
+      defaultFonts = {
+        serif = [ "Liberation Serif" ];
+        sansSerif = [ "Lato Regular" ];
+        monospace = [ "Fira Code Mono" ];
+      };
+    };
+    fonts.packages = with pkgs; [
+      lato
+      fira-code
+      fira-code-symbols
+      liberation_ttf
+    ];
 
     qt = {
       enable = true;
@@ -81,21 +95,12 @@
       };
     };
 
-    services.xserver.enable = true;
     services.hypridle.enable = true;
     services.gvfs.enable = true;
     services.dbus.enable = true;
     services.gnome.gnome-keyring.enable = true;
 
-    services.flatpak.enable = true;
-    systemd.services.flatpak-repo = {
-      wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.flatpak ];
-      script = ''
-        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-      '';
-    };
-
+    services.xserver.enable = true;
     services.xserver = {
       xkb = {
         layout = "us";
@@ -103,55 +108,6 @@
         options = "";
       };
     };
-
-    # Set cursor and turn display off
-    services.xserver.displayManager.setupCommands = ''
-      # Load cursor settings into the X server's resource database
-      ${pkgs.xorg.xrdb}/bin/xrdb -merge - <<EOF
-      Xcursor.theme: BreezeX-RosePine-Linux
-      Xcursor.size: 48
-      EOF
-
-      ${pkgs.xorg.xset}/bin/xset s 30 30
-      ${pkgs.xorg.xset}/bin/xset dpms 30 30 30
-    '';
-    services.displayManager.sddm = {
-      enable = true;
-      theme = "sddm-astronaut-theme";
-      package = pkgs.kdePackages.sddm;
-      extraPackages = with pkgs; [
-        kdePackages.qtsvg
-        kdePackages.qtmultimedia
-        kdePackages.qtvirtualkeyboard
-      ];
-    };
-
-    fonts.enableDefaultPackages = true;
-    fonts.fontDir.enable = true;
-    fonts.fontconfig = {
-      enable = true;
-      defaultFonts = {
-        serif = [ "Liberation Serif" ];
-        sansSerif = [ "Lato Regular" ];
-        monospace = [ "Fira Code Mono" ];
-      };
-    };
-    fonts.packages = with pkgs; [
-      lato
-      noto-fonts
-      noto-fonts-color-emoji
-      noto-fonts-cjk-sans
-      dejavu_fonts
-      fira-code
-      fira-code-symbols
-      jetbrains-mono
-      open-sans
-      liberation_ttf
-
-      # Windows fonts
-      corefonts
-      vista-fonts
-    ];
 
     environment.systemPackages = with pkgs; [
       rose-pine-cursor
@@ -165,32 +121,12 @@
       xdg-user-dirs
       xdg-user-dirs-gtk
       xsettingsd
-      xorg.xrdb
-
-      # SDDM
-      (sddm-astronaut.override { embeddedTheme = "japanese_aesthetic"; })
 
       # Apps
-      google-chrome
-      ytmdesktop
-      ghostty
-      wezterm
       nautilus
       flameshot
-      keepassxc
       file-roller
       gnome-font-viewer
-      slack
-
-      # Panel
-      kdePackages.qtbase
-      kdePackages.qtdeclarative
-      kdePackages.qtsvg
-      kdePackages.qtwayland
-      (inputs.quickshell.packages.${pkgs.system}.default.override {
-        withX11 = false;
-        withI3 = false;
-      })
     ];
   };
 }

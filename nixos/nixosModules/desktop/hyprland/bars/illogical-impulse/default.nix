@@ -1,123 +1,136 @@
 {
   lib,
   pkgs,
+  config,
   inputs,
   ...
 }:
 {
-  environment.variables = {
-    WAYLAND_BAR = "ii";
+  options = {
+    desktop.hyprland.illogicalImpulse = {
+      enable = lib.mkEnableOption "illogical-impulse quichshell bar configuration";
+    };
   };
 
-  i18n.inputMethod.type = "fcitx5";
-  i18n.inputMethod.fcitx5.waylandFrontend = true;
+  config = lib.mkIf config.desktop.hyprland.illogicalImpulse.enable {
+    environment.variables = {
+      WAYLAND_BAR = "ii";
+    };
 
-  services.upower.enable = true;
-  services.geoclue2.enable = true;
-  services.gnome.gnome-keyring.enable = true;
+    i18n.inputMethod.type = "fcitx5";
+    i18n.inputMethod.fcitx5.waylandFrontend = true;
 
-  qt.enable = lib.mkForce true;
-  qt.platformTheme = lib.mkForce "qt5ct";
-  qt.style = lib.mkForce "kvantum";
+    services.upower.enable = true;
+    services.geoclue2.enable = true;
+    services.gnome.gnome-keyring.enable = true;
 
-  fonts.packages = with pkgs; [
-    nerd-fonts.ubuntu
-    nerd-fonts.ubuntu-mono
-    nerd-fonts.caskaydia-cove
-    nerd-fonts.fantasque-sans-mono
-    nerd-fonts.space-mono
-    rubik
-    material-symbols
+    qt.enable = lib.mkForce true;
+    qt.platformTheme = lib.mkForce "qt5ct";
+    qt.style = lib.mkForce "kvantum";
 
-    (callPackage ./pkgs/gabarito-font.nix { })
-  ];
-  environment.systemPackages = with pkgs; [
-    # Dependencies
-    (callPackage ./pkgs/oneui4-icons.nix { })
+    fonts.packages = with pkgs; [
+      nerd-fonts.ubuntu
+      nerd-fonts.ubuntu-mono
+      nerd-fonts.caskaydia-cove
+      nerd-fonts.fantasque-sans-mono
+      nerd-fonts.space-mono
+      rubik
+      material-symbols
 
-    inputs.quickshell.packages.${pkgs.system}.default
-    kdePackages.kdialog
-    kdePackages.kcmutils
-    kdePackages.qt5compat
-    kdePackages.qtbase
-    kdePackages.qtdeclarative
-    kdePackages.qtimageformats
-    kdePackages.qtmultimedia
-    kdePackages.qtpositioning
-    kdePackages.qtquicktimeline
-    kdePackages.qtsensors
-    kdePackages.qtsvg
-    kdePackages.qttools
-    kdePackages.qttranslations
-    kdePackages.qtvirtualkeyboard
-    kdePackages.qtwayland
-    kdePackages.syntax-highlighting
-    kdePackages.plasma-workspace
-    kdePackages.plasma-systemmonitor
-    kdePackages.bluedevil
-    kdePackages.bluez-qt
-    kdePackages.plasma-nm
-    kdePackages.kwallet
-    kdePackages.polkit-kde-agent-1
+      (callPackage ./pkgs/gabarito-font.nix { })
+    ];
+    environment.systemPackages = with pkgs; [
+      (callPackage ./pkgs/oneui4-icons.nix { })
+      (inputs.quickshell.packages.${pkgs.system}.default.override {
+        withX11 = false;
+        withI3 = false;
+      })
+      kdePackages.kdialog
+      kdePackages.kcmutils
+      kdePackages.qt5compat
+      kdePackages.qtbase
+      kdePackages.qtdeclarative
+      kdePackages.qtimageformats
+      kdePackages.qtmultimedia
+      kdePackages.qtpositioning
+      kdePackages.qtquicktimeline
+      kdePackages.qtsensors
+      kdePackages.qtsvg
+      kdePackages.qttools
+      kdePackages.qttranslations
+      kdePackages.qtvirtualkeyboard
+      kdePackages.qtwayland
+      kdePackages.syntax-highlighting
+      kdePackages.plasma-workspace
+      kdePackages.plasma-systemmonitor
+      kdePackages.bluedevil
+      kdePackages.bluez-qt
+      kdePackages.plasma-nm
+      kdePackages.kwallet
+      kdePackages.polkit-kde-agent-1
 
-    # Audio
-    cava
-    lxqt.pavucontrol-qt
-    wireplumber
-    libdbusmenu-gtk3
-    playerctl
-    easyeffects
+      # Audio
+      cava
+      lxqt.pavucontrol-qt
+      wireplumber
+      libdbusmenu-gtk3
+      playerctl
+      easyeffects
 
-    # Backlight
-    brightnessctl
-    ddcutil
+      # Bluetooth
+      bluetui
 
-    # Screenshot
-    hyprshot
-    slurp
-    swappy
-    tesseract
-    wf-recorder
+      # Backlight
+      brightnessctl
+      ddcutil
 
-    # Toolkit
-    # wtype
-    # ydotool
-    hyprpicker
+      # Screenshot
+      hyprshot
+      slurp
+      swappy
+      tesseract
+      wf-recorder
 
-    # Widgets
-    # glib
-    # swww
-    translate-shell
-    wlogout
+      # Toolkit
+      # wtype
+      # ydotool
+      hyprpicker
 
-    # Misc
-    bc
-    cliphist
-    curl
-    libqalculate
-    jq
-    fuzzel
-    matugen
-    wl-clipboard
-    # libsoup_3
-    # libportal-gtk4
-    # gobject-introspection
-    # sassc
-    # opencv
-    python313Packages.kde-material-you-colors
-    (python3.withPackages (
-      python-pkgs: with python-pkgs; [
-        build
-        pillow
-        setuptools-scm
-        wheel
-        pywayland
-        psutil
-        materialyoucolor
-        libsass
-        material-color-utilities
-        setproctitle
-      ]
-    ))
-  ];
+      # Widgets
+      # glib
+      # swww
+      translate-shell
+      wlogout
+
+      # Misc
+      bc
+      cliphist
+      curl
+      libqalculate
+      jq
+      fuzzel
+      matugen
+      wl-clipboard
+      # libsoup_3
+      # libportal-gtk4
+      # gobject-introspection
+      # sassc
+      # opencv
+      python313Packages.kde-material-you-colors
+      (python3.withPackages (
+        python-pkgs: with python-pkgs; [
+          build
+          pillow
+          setuptools-scm
+          wheel
+          pywayland
+          psutil
+          materialyoucolor
+          libsass
+          material-color-utilities
+          setproctitle
+        ]
+      ))
+    ];
+  };
 }
