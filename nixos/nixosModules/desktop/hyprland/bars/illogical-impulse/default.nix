@@ -13,10 +13,6 @@
   };
 
   config = lib.mkIf config.desktop.hyprland.illogicalImpulse.enable {
-    environment.variables = {
-      WAYLAND_BAR = "ii";
-    };
-
     i18n.inputMethod.type = "fcitx5";
     i18n.inputMethod.fcitx5.waylandFrontend = true;
 
@@ -40,6 +36,7 @@
       (callPackage ./pkgs/gabarito-font.nix { })
     ];
     environment.systemPackages = with pkgs; [
+      (callPackage ./pkgs/end4-shell.nix { })
       (callPackage ./pkgs/oneui4-icons.nix { })
       (inputs.quickshell.packages.${pkgs.system}.default.override {
         withX11 = false;
