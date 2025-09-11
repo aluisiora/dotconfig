@@ -6,11 +6,7 @@
   ...
 }:
 {
-  options = {
-    desktop.hyprland.caelestia.enable = lib.mkEnableOption "caelestia shell";
-  };
-
-  config = lib.mkIf config.desktop.hyprland.caelestia.enable {
+  config = lib.mkIf (config.desktop.hyprland.bar == "caelestia") {
     services.upower.enable = true;
     services.gnome.gnome-keyring.enable = true;
     services.geoclue2.enable = true;

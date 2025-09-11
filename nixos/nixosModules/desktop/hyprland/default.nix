@@ -15,6 +15,16 @@
   options = {
     desktop.hyprland = {
       enable = lib.mkEnableOption "hyprland environment";
+      bar = lib.mkOption {
+        type = lib.types.enum [
+          "ii"
+          "caelestia"
+          "hyprpanel"
+          "none"
+        ];
+        default = "none";
+        description = "Bar configuration to use in Hyprland";
+      };
     };
   };
 

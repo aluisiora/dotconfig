@@ -13,7 +13,7 @@
     enable = true;
     hyprland = {
       enable = true;
-      illogicalImpulse.enable = true;
+      bar = "ii";
       sddm = {
         enable = true;
         theme = "japanese_aesthetic";

@@ -5,18 +5,17 @@
   inputs,
   ...
 }:
-{
-  options = {
-    desktop.hyprland.illogicalImpulse = {
-      enable = lib.mkEnableOption "illogical-impulse quichshell bar configuration";
-    };
+let
+  quickshell = inputs.quickshell.packages.${pkgs.system}.default.override {
+    withX11 = false;
+    withI3 = false;
   };
-
-  config = lib.mkIf config.desktop.hyprland.illogicalImpulse.enable {
+in
+{
+  config = lib.mkIf (config.desktop.hyprland.bar == "ii") {
     i18n.inputMethod.type = "fcitx5";
     i18n.inputMethod.fcitx5.waylandFrontend = true;
 
-    services.upower.enable = true;
     services.geoclue2.enable = true;
     services.gnome.gnome-keyring.enable = true;
 
@@ -36,12 +35,9 @@
       (callPackage ./pkgs/gabarito-font.nix { })
     ];
     environment.systemPackages = with pkgs; [
-      (callPackage ./pkgs/end4-shell.nix { })
+      quickshell
+      (callPackage ./pkgs/end4-shell.nix { quickshell = quickshell; })
       (callPackage ./pkgs/oneui4-icons.nix { })
-      (inputs.quickshell.packages.${pkgs.system}.default.override {
-        withX11 = false;
-        withI3 = false;
-      })
       kdePackages.kdialog
       kdePackages.kcmutils
       kdePackages.qt5compat
@@ -108,6 +104,7 @@
       fuzzel
       matugen
       wl-clipboard
+      imagemagick
       # libsoup_3
       # libportal-gtk4
       # gobject-introspection

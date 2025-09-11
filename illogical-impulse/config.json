@@ -27,12 +27,18 @@
             "automatic": true,
             "backgroundTransparency": 0.11,
             "contentTransparency": 0.57,
-            "enable": true
+            "enable": false
         },
         "wallpaperTheming": {
             "enableAppsAndShell": true,
             "enableQtApps": false,
-            "enableTerminal": false
+            "enableTerminal": false,
+            "terminalGenerationProps": {
+                "forceDarkMode": false,
+                "harmonizeThreshold": 100,
+                "harmony": 0.8,
+                "termFgBoost": 0.35
+            }
         }
     },
     "apps": {
@@ -54,13 +60,15 @@
         "clockY": -500,
         "fixedClockPosition": false,
         "hideWhenFullscreen": true,
-        "mantra": "",
         "parallax": {
-            "enableSidebar": true,
-            "enableWorkspace": true,
+            "autoVertical": false,
+            "enableSidebar": false,
+            "enableWorkspace": false,
             "vertical": false,
-            "workspaceZoom": 1.07
+            "workspaceZoom": 1
         },
+        "quote": "",
+        "showClock": true,
         "thumbnailPath": "",
         "wallpaperPath": "/home/aluisio/Pictures/gruvbox-minimalistic-ai.png"
     },
@@ -78,14 +86,22 @@
         "cornerStyle": 1,
         "resources": {
             "alwaysShowCpu": true,
-            "alwaysShowSwap": true
+            "alwaysShowSwap": true,
+            "cpuWarningThreshold": 90,
+            "memoryWarningThreshold": 95,
+            "swapWarningThreshold": 85
         },
         "screenList": [
         ],
         "showBackground": true,
         "topLeftIcon": "spark",
         "tray": {
-            "monochromeIcons": true
+            "invertPinnedItems": true,
+            "monochromeIcons": true,
+            "pinnedItems": [
+                "Fcitx"
+            ],
+            "showItemId": false
         },
         "utilButtons": {
             "showColorPicker": true,
@@ -107,9 +123,14 @@
         "workspaces": {
             "alwaysShowNumbers": false,
             "monochromeIcons": true,
+            "numberMap": [
+                "1",
+                "2"
+            ],
             "showAppIcons": true,
             "showNumberDelay": 150,
-            "shown": 10
+            "shown": 10,
+            "useNerdFont": false
         }
     },
     "battery": {
@@ -150,7 +171,8 @@
             "engine": "auto",
             "sourceLanguage": "auto",
             "targetLanguage": "auto"
-        }
+        },
+        "ui": "auto"
     },
     "light": {
         "night": {
@@ -201,6 +223,7 @@
             "emojis": ":",
             "math": "=",
             "shellCommand": "$",
+            "showDefaultActionsWithoutPrefix": true,
             "webSearch": "?"
         },
         "sloppy": false
@@ -213,6 +236,15 @@
             "zerochan": {
                 "username": "[unset]"
             }
+        },
+        "cornerOpen": {
+            "bottom": false,
+            "clickless": false,
+            "cornerRegionHeight": 2,
+            "cornerRegionWidth": 60,
+            "enable": true,
+            "valueScroll": true,
+            "visualize": false
         },
         "keepRightSidebarLoaded": true,
         "translator": {
