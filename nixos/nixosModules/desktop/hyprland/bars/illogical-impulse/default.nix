@@ -10,11 +10,21 @@ let
     withX11 = false;
     withI3 = false;
   };
+  gabarito-font = pkgs.callPackage ./pkgs/gabarito-font.nix { };
+  end4-shell = pkgs.callPackage ./pkgs/end4-shell.nix { quickshell = quickshell-git; };
+  oneui4-icons = pkgs.callPackage ./pkgs/oneui4-icons.nix { };
 in
 {
   config = lib.mkIf (config.desktop.hyprland.bar == "ii") {
-    i18n.inputMethod.type = "fcitx5";
-    i18n.inputMethod.fcitx5.waylandFrontend = true;
+    i18n.inputMethod = {
+      enable = true;
+      type = "fcitx5";
+      fcitx5.waylandFrontend = true;
+      addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+      ];
+    };
 
     services.geoclue2.enable = true;
     services.gnome.gnome-keyring.enable = true;
@@ -31,13 +41,12 @@ in
       nerd-fonts.space-mono
       rubik
       material-symbols
-
-      (callPackage ./pkgs/gabarito-font.nix { })
+      gabarito-font
     ];
     environment.systemPackages = with pkgs; [
       quickshell-git
-      (callPackage ./pkgs/end4-shell.nix { quickshell = quickshell-git; })
-      (callPackage ./pkgs/oneui4-icons.nix { })
+      end4-shell
+      oneui4-icons
       kdePackages.kdialog
       kdePackages.kcmutils
       kdePackages.qt5compat

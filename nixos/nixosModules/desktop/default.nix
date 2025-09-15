@@ -35,8 +35,8 @@
     services.xserver = {
       xkb = {
         layout = "us,us";
-        variant = "intl,";
-        options = "";
+        variant = "altgr-intl,";
+        options = "grp:alt_space_toggle";
       };
     };
     fonts.packages = with pkgs; [

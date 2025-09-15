@@ -34,6 +34,7 @@
     file
     diff-so-fancy
     tldr
+    nh
     # Misc
     xdg-user-dirs
   ];
