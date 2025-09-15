@@ -12,6 +12,10 @@
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    waybar = {
+      url = "git@github.com:Alexays/Waybar.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
