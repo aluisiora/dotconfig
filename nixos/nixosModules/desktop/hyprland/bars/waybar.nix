@@ -6,7 +6,7 @@
   ...
 }:
 let
-  waybar = inputs.waybar.${pkgs.system}.waybar;
+  waybar-git = inputs.waybar.${pkgs.system}.waybar;
 in
 {
   config = lib.mkIf (config.desktop.hyprland.bar == "waybar") {
@@ -15,7 +15,7 @@ in
     services.geoclue2.enable = true;
 
     environment.systemPackages = with pkgs; [
-      waybar
+      waybar-git
       swaynotificationcenter
       fuzzel
       cliphist

@@ -6,7 +6,7 @@
   ...
 }:
 let
-  quickshell = inputs.quickshell.packages.${pkgs.system}.default.override {
+  quickshell-git = inputs.quickshell.packages.${pkgs.system}.default.override {
     withX11 = false;
     withI3 = false;
   };
@@ -35,8 +35,8 @@ in
       (callPackage ./pkgs/gabarito-font.nix { })
     ];
     environment.systemPackages = with pkgs; [
-      quickshell
-      (callPackage ./pkgs/end4-shell.nix { quickshell = quickshell; })
+      quickshell-git
+      (callPackage ./pkgs/end4-shell.nix { quickshell = quickshell-git; })
       (callPackage ./pkgs/oneui4-icons.nix { })
       kdePackages.kdialog
       kdePackages.kcmutils

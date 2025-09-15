@@ -305,6 +305,7 @@
       },
       "original": {
         "owner": "Alexays",
+        "ref": "master",
         "repo": "Waybar",
         "type": "github"
       }
