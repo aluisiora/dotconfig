@@ -72,7 +72,12 @@
     lua51Packages.luarocks
     nodejs_24
   ];
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    shellInit = ''
+      export ZDOTDIR=$HOME/.config/zsh
+    '';
+  };
   programs.nix-ld.enable = true;
   programs.direnv.enable = true;
   programs.direnv.silent = true;
