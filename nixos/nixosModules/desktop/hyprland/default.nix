@@ -20,6 +20,7 @@
           "ii"
           "caelestia"
           "hyprpanel"
+          "waybar"
           "none"
         ];
         default = "none";
