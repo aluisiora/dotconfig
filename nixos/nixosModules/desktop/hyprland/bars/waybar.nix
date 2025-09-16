@@ -1,21 +1,17 @@
 {
-  inputs,
-  pkgs,
   lib,
+  pkgs,
   config,
   ...
 }:
-let
-  waybar-git = inputs.waybar.${pkgs.system}.waybar;
-in
 {
   config = lib.mkIf (config.desktop.hyprland.bar == "waybar") {
     services.upower.enable = true;
     services.gnome.gnome-keyring.enable = true;
     services.geoclue2.enable = true;
 
+    programs.waybar.enable = true;
     environment.systemPackages = with pkgs; [
-      waybar-git
       swaynotificationcenter
       fuzzel
       cliphist

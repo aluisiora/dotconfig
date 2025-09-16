@@ -13,7 +13,7 @@
     enable = true;
     hyprland = {
       enable = true;
-      bar = "ii";
+      bar = "waybar";
       sddm = {
         enable = true;
         theme = "japanese_aesthetic";

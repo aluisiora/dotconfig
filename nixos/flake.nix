@@ -12,10 +12,6 @@
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    waybar = {
-      url = "github:Alexays/Waybar/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
