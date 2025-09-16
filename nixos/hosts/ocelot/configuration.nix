@@ -23,6 +23,7 @@
 
   environment.variables = {
     EDITOR = "nvim";
+    ZDOTDIR = "$HOME/.config/zsh";
   };
 
   # System config
@@ -74,9 +75,7 @@
   ];
   programs.zsh = {
     enable = true;
-    shellInit = ''
-      export ZDOTDIR=$HOME/.config/zsh
-    '';
+    enableGlobalCompInit = false;
   };
   programs.nix-ld.enable = true;
   programs.direnv.enable = true;
