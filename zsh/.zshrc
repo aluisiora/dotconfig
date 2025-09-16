@@ -32,22 +32,12 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# Homebrew
-if [ -f /opt/homebrew/bin/brew ]; then
-  export HOMEBREW_AUTO_UPDATE_SECS=86400
-  export KEYTIMEOUT=1
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
 # Add plugins
 zinit ice depth=1
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
-
-# Add snippets
-zinit snippet OMZP::mise
 
 zinit ice lucid wait
 zinit snippet OMZP::fzf
