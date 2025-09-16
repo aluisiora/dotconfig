@@ -19,11 +19,13 @@ in
     i18n.inputMethod = {
       enable = true;
       type = "fcitx5";
-      fcitx5.waylandFrontend = true;
-      addons = with pkgs; [
-        fcitx5-mozc
-        fcitx5-gtk
-      ];
+      fcitx5 = {
+        waylandFrontend = true;
+        addons = with pkgs; [
+          fcitx5-gtk
+          kdePackages.fcitx5-qt
+        ];
+      };
     };
 
     services.geoclue2.enable = true;
@@ -114,11 +116,6 @@ in
       matugen
       wl-clipboard
       imagemagick
-      # libsoup_3
-      # libportal-gtk4
-      # gobject-introspection
-      # sassc
-      # opencv
       python313Packages.kde-material-you-colors
       (python3.withPackages (
         python-pkgs: with python-pkgs; [

@@ -24,8 +24,6 @@
 
     environment.systemPackages = with pkgs; [
       gnomeExtensions.appindicator
-      xdg-user-dirs
-      xdg-user-dirs-gtk
     ];
   };
 }

@@ -110,6 +110,7 @@
     services.gvfs.enable = true;
     services.dbus.enable = true;
     services.gnome.gnome-keyring.enable = true;
+    services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
     environment.systemPackages = with pkgs; [
       rose-pine-cursor
@@ -120,8 +121,6 @@
       kdePackages.breeze-icons
       adwaita-qt
       hicolor-icon-theme
-      xdg-user-dirs
-      xdg-user-dirs-gtk
       xsettingsd
 
       # Apps

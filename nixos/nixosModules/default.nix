@@ -35,8 +35,6 @@
     diff-so-fancy
     tldr
     nh
-    # Misc
-    xdg-user-dirs
   ];
 
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
