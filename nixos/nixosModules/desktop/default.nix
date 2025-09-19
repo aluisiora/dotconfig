@@ -36,7 +36,8 @@
       xkb = {
         layout = "us,us";
         variant = "intl,";
-        options = "grp:alt_space_toggle";
+        options = "";
+        # options = "grp:alt_space_toggle";
       };
     };
     fonts.enableDefaultPackages = true;
