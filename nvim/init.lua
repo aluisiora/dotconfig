@@ -342,12 +342,18 @@ later(function()
       ["<C-n>"] = { "select_next", "show", "fallback" },
     },
     cmdline = { enabled = false },
-    comletion = {
+    completion = {
       accept = {
         auto_brackets = {
           enabled = true, -- integration with nvim-autopairs
         },
       },
+      list = {
+        selection = {
+          preselect = false;
+          auto_insert = false;
+        }
+      }
     },
     sources = {
       default = function(_)
