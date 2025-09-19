@@ -7,18 +7,9 @@
   ];
 
   # Custom modules
-  plymouth.enable = true;
-  plymouth.theme = "hexagon_dots";
   desktop = {
     enable = true;
-    hyprland = {
-      enable = true;
-      bar = "waybar";
-      sddm = {
-        enable = true;
-        theme = "japanese_aesthetic";
-      };
-    };
+    niri.enable = true;
   };
 
   environment.variables = {

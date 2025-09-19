@@ -22,7 +22,6 @@
   };
 
   config = lib.mkIf config.desktop.enable {
-    desktop.hyprland.enable = lib.mkDefault true;
     programs.firefox.enable = true;
     services.flatpak.enable = true;
     systemd.services.flatpak-repo = {
