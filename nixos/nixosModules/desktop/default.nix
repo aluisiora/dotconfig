@@ -8,6 +8,7 @@
   imports = [
     ./gnome
     ./hyprland
+    ./niri.nix
   ];
 
   options = {
