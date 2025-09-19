@@ -23,8 +23,11 @@
 
     programs.niri.enable = true;
     programs.waybar.enable = true;
+    programs.nm-applet.enable = true;
+
     services.gvfs.enable = true;
     services.dbus.enable = true;
+    services.geoclue2.enable = true;
 
     environment.systemPackages = with pkgs; [
       mako
@@ -36,6 +39,8 @@
       xwayland-satellite
       swww
       swaylock
+      wl-clipboard
+      cliphist
     ];
   };
 }
