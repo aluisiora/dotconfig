@@ -35,10 +35,12 @@
     services.xserver = {
       xkb = {
         layout = "us,us";
-        variant = "altgr-intl,";
+        variant = "intl,";
         options = "grp:alt_space_toggle";
       };
     };
+    fonts.enableDefaultPackages = true;
+    fonts.fontDir.enable = true;
     fonts.packages = with pkgs; [
       noto-fonts
       noto-fonts-color-emoji

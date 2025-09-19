@@ -37,6 +37,7 @@
       QT_QPA_PLATFORM = "wayland";
       MOZ_ENABLE_WAYLAND = "1";
       USE_WAYLAND_GRIM = "1";
+      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     };
 
     programs.hyprland = {
@@ -62,8 +63,6 @@
       ];
     };
 
-    fonts.enableDefaultPackages = true;
-    fonts.fontDir.enable = true;
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
