@@ -23,6 +23,7 @@
   networking.networkmanager.enable = true;
   time.timeZone = "America/Sao_Paulo";
   i18n.defaultLocale = "en_US.UTF-8";
+  services.displayManager.ly.enable = true;
   services.pipewire = {
     enable = true;
     pulse.enable = true;

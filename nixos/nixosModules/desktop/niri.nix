@@ -32,9 +32,10 @@
       file-roller 
       gnome-font-viewer
       papers
-      alacritty
       fuzzel
       xwayland-satellite
+      swww
+      swaylock
     ];
   };
 }
