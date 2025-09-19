@@ -33,7 +33,6 @@
     systemd.enable = true;
     verbose = false;
     availableKernelModules = [
-      "amdgpu"
       "nvme"
       "xhci_pci"
       "ahci"

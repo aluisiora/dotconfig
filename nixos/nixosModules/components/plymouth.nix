@@ -26,6 +26,9 @@
       "udev.log_priority=3"
       "rd.systemd.show_status=auto"
     ];
+    boot.initrd.availableKernelModules = [
+      "amdgpu"
+    ];
     boot.plymouth = {
       enable = true;
       theme = config.plymouth.theme;
