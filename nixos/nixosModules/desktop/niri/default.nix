@@ -5,6 +5,11 @@
   ...
 }:
 {
+  imports = [
+    ./waybar.nix
+    ./dms.nix
+  ];
+
   options = {
     desktop.niri = {
       enable = lib.mkEnableOption "niri environment";
@@ -22,25 +27,21 @@
     };
 
     programs.niri.enable = true;
-    programs.waybar.enable = true;
-    programs.nm-applet.enable = true;
 
     services.gvfs.enable = true;
     services.dbus.enable = true;
-    services.geoclue2.enable = true;
+
+    fonts.packages = with pkgs; [
+      lato
+    ];
 
     environment.systemPackages = with pkgs; [
-      mako
+      rose-pine-cursor
       nautilus
-      file-roller 
+      file-roller
       gnome-font-viewer
       papers
-      fuzzel
       xwayland-satellite
-      swww
-      swaylock
-      wl-clipboard
-      cliphist
     ];
   };
 }

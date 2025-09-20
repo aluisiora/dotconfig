@@ -8,15 +8,16 @@
   imports = [
     ./gnome
     ./hyprland
-    ./niri.nix
+    ./niri
   ];
 
   options = {
     desktop = {
-      enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Enable desktop base configuration";
+      enable = lib.mkEnableOption "desktop GUI";
+      extraPackages = lib.mkOption {
+        type = lib.types.listOf lib.types.package;
+        default = [ ];
+        description = "Extra apps to include";
       };
     };
   };
@@ -46,25 +47,20 @@
       noto-fonts
       noto-fonts-color-emoji
       noto-fonts-cjk-sans
-      lato
       dejavu_fonts
-      fira-code
-      fira-code-symbols
       jetbrains-mono
-      open-sans
       liberation_ttf
-
       # Windows fonts
       corefonts
       vista-fonts
     ];
-    environment.systemPackages = with pkgs; [
-      google-chrome
-      ytmdesktop
-      ghostty
-      wezterm
-      keepassxc
-      slack
-    ];
+    environment.systemPackages =
+      with pkgs;
+      [
+        ytmdesktop
+        ghostty
+        wezterm
+      ]
+      ++ config.desktop.extraPackages;
   };
 }

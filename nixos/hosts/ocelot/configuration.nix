@@ -10,6 +10,11 @@
   desktop = {
     enable = true;
     niri.enable = true;
+    niri.dms.enable = true;
+    extraPackages = with pkgs; [
+        google-chrome
+        slack
+    ];
   };
 
   environment.variables = {

@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    # TODO: create flakes and move these external inputs
     lanzaboote.url = "github:nix-community/lanzaboote";
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
@@ -10,6 +11,14 @@
     };
     caelestia = {
       url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dgop = {
+      url = "github:AvengeMedia/dgop";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dms-cli = {
+      url = "github:AvengeMedia/danklinux";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
