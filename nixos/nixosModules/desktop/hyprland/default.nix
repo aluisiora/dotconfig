@@ -10,7 +10,6 @@
     ./bars/caelestia.nix
     ./bars/hyprpanel.nix
     ./bars/waybar.nix
-    ./displayManagers/sddm.nix
   ];
 
   options = {

@@ -1,4 +1,7 @@
 { ... }:
 {
-  imports = [ ./plymouth.nix ];
+  imports = [
+    ./plymouth.nix
+    ./sddm.nix
+  ];
 }

@@ -6,21 +6,18 @@
 }:
 {
   options = {
-    desktop.hyprland.sddm = {
-      enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Use SDDM as display manager";
-      };
+    desktop.sddm = {
+      enable = lib.mkEnableOption "sddm-astronaut themed sddm";
       theme = lib.mkOption {
         type = lib.types.anything;
-        default = "japanese_aesthetic";
+        # Themes: https://github.com/Keyitdev/sddm-astronaut-theme/tree/master/Themes
+        default = "astronaut";
         description = "SDDM Theme";
       };
     };
   };
 
-  config = lib.mkIf config.desktop.hyprland.sddm.enable {
+  config = lib.mkIf config.desktop.sddm.enable {
     # Set cursor and turn display off
     services.xserver.displayManager.setupCommands = ''
       # Load cursor settings into the X server's resource database
@@ -46,7 +43,7 @@
     environment.systemPackages = with pkgs; [
       rose-pine-cursor
       xorg.xrdb
-      (sddm-astronaut.override { embeddedTheme = config.desktop.hyprland.sddm.theme; })
+      (sddm-astronaut.override { embeddedTheme = config.desktop.sddm.theme; })
     ];
   };
 }

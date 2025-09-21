@@ -35,6 +35,7 @@ in
       libsForQt5.qt5ct
       kdePackages.qt6ct
       ddcutil
+      glib
       # System monitor
       dgop
       # Networking and VPN
