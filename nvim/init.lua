@@ -186,9 +186,7 @@ later(function()
   local lsp_progress = require("lsp-progress")
   lsp_progress.setup()
 
-  local lsp_status = function ()
-    lsp_progress.progress()
-  end
+  local lsp_status = function() return lsp_progress.progress() end
 
   vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
   vim.api.nvim_create_autocmd("User", {
@@ -206,7 +204,6 @@ later(function()
     },
     sections = {
       lualine_c = { "%<%f %h%m%r", lsp_status },
-      -- lualine_x = { function() lsp_progress.progress() end, "encoding", "fileformat", "filetype" },
     },
   })
 end)
