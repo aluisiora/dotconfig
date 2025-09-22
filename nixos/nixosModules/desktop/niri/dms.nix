@@ -9,7 +9,6 @@ let
   quickshell = inputs.quickshell.packages.${pkgs.system}.default;
   dgop = inputs.dgop.packages.${pkgs.system}.default;
   dms = pkgs.callPackage ./pkgs/dank-material-shell.nix { quickshell = quickshell; };
-  dms-cli = inputs.dms-cli.packages.${pkgs.system}.default;
 in
 {
   options = {
@@ -30,7 +29,6 @@ in
       # Shell
       quickshell
       dms
-      dms-cli
       libsForQt5.qt5ct
       kdePackages.qt6ct
       ddcutil
