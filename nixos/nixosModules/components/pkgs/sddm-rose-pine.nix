@@ -1,7 +1,8 @@
 {
+  pkgs,
+  lib,
   stdenvNoCC,
   fetchFromGitHub,
-  libsForQt5,
 }:
 
 stdenvNoCC.mkDerivation rec {
@@ -10,7 +11,7 @@ stdenvNoCC.mkDerivation rec {
   dontBuild = true;
 
   propagatedUserEnvPkgs = [
-    libsForQt5.qt5.qtgraphicaleffects
+    pkgs.libsForQt5.qt5.qtgraphicaleffects
   ];
 
   src = fetchFromGitHub {
@@ -24,4 +25,11 @@ stdenvNoCC.mkDerivation rec {
     mkdir -p $out/share/sddm/themes
     cp -aR $src $out/share/sddm/themes/rose-pine
   '';
+
+  meta = {
+    description = "The sweetest dark theme around for SDDM, the Simple Desktop Display Manager.";
+    homepage = "https://github.com/lwndhrst/sddm-rose-pine";
+    license = lib.licenses.gpl3;
+    platforms = lib.platforms.all;
+  };
 }

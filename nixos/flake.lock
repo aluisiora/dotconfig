@@ -81,26 +81,6 @@
         "type": "github"
       }
     },
-    "dms-cli": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1758117050,
-        "narHash": "sha256-PjXULzEZSFjYVKJgGgzwgMhAC+QqdIlLrDVYqivp26Y=",
-        "owner": "AvengeMedia",
-        "repo": "danklinux",
-        "rev": "c91910ead1df32fddb5122667881c782dfca9897",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AvengeMedia",
-        "repo": "danklinux",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -286,7 +266,6 @@
       "inputs": {
         "caelestia": "caelestia",
         "dgop": "dgop",
-        "dms-cli": "dms-cli",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs_2",
         "quickshell": "quickshell_2"

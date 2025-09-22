@@ -14,10 +14,6 @@ let
       pkgs.sddm-astronaut.override { embeddedTheme = config.desktop.sddm.theme; };
 in
 {
-  imports = [
-    ./pkgs/sddm-rose-pine.nix
-  ];
-
   options = {
     desktop.sddm = {
       enable = lib.mkEnableOption "themed sddm";
