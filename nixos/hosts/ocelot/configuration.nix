@@ -17,7 +17,7 @@
     ];
     sddm = {
       enable = true;
-      theme = "purple_leaves";
+      theme = "rose-pine";
     };
   };
 
