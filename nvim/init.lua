@@ -87,9 +87,18 @@ local add, now, later = minideps.add, minideps.now, minideps.later
 
 --- theme
 now(function()
-  add("ellisonleao/gruvbox.nvim")
-  require("gruvbox").setup()
-  vim.cmd.colorscheme("gruvbox")
+  add({
+    source = "rose-pine/neovim",
+    name = "rose-pine",
+  })
+  require("rose-pine").setup({
+    variant = "main",
+    dim_inactive_windows = true,
+    enable = {
+      legacy_highlights = false,
+    },
+  })
+  vim.cmd.colorscheme("rose-pine")
 end)
 
 now(function() add("nvim-lua/plenary.nvim") end)
@@ -169,19 +178,35 @@ end)
 -- statusline
 later(function()
   add("nvim-lualine/lualine.nvim")
+  add("linrongbin16/lsp-progress.nvim")
 
   local lualine_require = require("lualine_require")
   lualine_require.require = require
+  local lualine = require("lualine")
+  local lsp_progress = require("lsp-progress")
+  lsp_progress.setup()
 
-  require("lualine").setup({
+  local lsp_status = function ()
+    lsp_progress.progress()
+  end
+
+  vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
+  vim.api.nvim_create_autocmd("User", {
+    group = "lualine_augroup",
+    pattern = "LspProgressStatusUpdated",
+    callback = lualine.refresh,
+  })
+
+  lualine.setup({
     options = {
-      theme = "gruvbox",
+      theme = "rose-pine",
       globalstatus = true,
       section_separators = "",
       component_separators = "",
     },
     sections = {
-      lualine_c = { "%<%f %h%m%r" },
+      lualine_c = { "%<%f %h%m%r", lsp_status },
+      -- lualine_x = { function() lsp_progress.progress() end, "encoding", "fileformat", "filetype" },
     },
   })
 end)
@@ -332,7 +357,7 @@ later(function()
   add("kristijanhusak/vim-dadbod-completion")
   add({
     source = "saghen/blink.cmp",
-    checkout = "v1.4.1",
+    checkout = "v1.7.0",
   })
   require("blink.cmp").setup({
     keymap = {
@@ -350,10 +375,10 @@ later(function()
       },
       list = {
         selection = {
-          preselect = false;
-          auto_insert = false;
-        }
-      }
+          preselect = false,
+          auto_insert = false,
+        },
+      },
     },
     sources = {
       default = function(_)
@@ -531,7 +556,6 @@ end)
 -- lsp
 later(function()
   add("mason-org/mason.nvim")
-  add("j-hui/fidget.nvim")
   add("nvim-flutter/flutter-tools.nvim")
   add("ccaglak/phptools.nvim")
   add({
@@ -540,13 +564,13 @@ later(function()
   })
 
   require("mason").setup({})
-  require("fidget").setup({
-    notification = {
-      window = {
-        winblend = 0,
-      },
-    },
-  })
+  -- require("fidget").setup({
+  --   notification = {
+  --     window = {
+  --       winblend = 0,
+  --     },
+  --   },
+  -- })
 
   -- Disable the default keybinds
   for _, bind in ipairs({ "grn", "grd", "gra", "gri", "grr" }) do
