@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -12,14 +12,16 @@
     niri.enable = true;
     niri.dms.enable = true;
     extraPackages = with pkgs; [
-        google-chrome
-        slack
+      google-chrome
+      slack
     ];
     sddm = {
       enable = true;
       theme = "rose-pine";
     };
   };
+
+  services.upower.enable = lib.mkForce false;
 
   environment.variables = {
     EDITOR = "nvim";
