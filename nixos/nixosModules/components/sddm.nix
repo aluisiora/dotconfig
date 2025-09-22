@@ -10,6 +10,7 @@ let
     if config.desktop.sddm.theme == "rose-pine" then
       pkgs.callPackage ./pkgs/sddm-rose-pine.nix { }
     else
+      # Themes: https://github.com/Keyitdev/sddm-astronaut-theme/tree/master/Themes
       pkgs.sddm-astronaut.override { embeddedTheme = config.desktop.sddm.theme; };
 in
 {
@@ -22,7 +23,6 @@ in
       enable = lib.mkEnableOption "themed sddm";
       theme = lib.mkOption {
         type = lib.types.anything;
-        # Themes: https://github.com/Keyitdev/sddm-astronaut-theme/tree/master/Themes
         default = "astronaut";
         description = "SDDM Theme";
       };

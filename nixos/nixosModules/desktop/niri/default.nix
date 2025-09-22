@@ -19,12 +19,13 @@
   config = lib.mkIf config.desktop.niri.enable {
     environment.variables = {
       NIXOS_OZONE_WL = "1";
-      ELECTRON_OZONE_PLATFORM_HINT = "auto";
+      ELECTRON_OZONE_PLATFORM_HINT = "wayland";
       SDL_VIDEODRIVER = "wayland";
       QT_QPA_PLATFORM = "wayland";
       MOZ_ENABLE_WAYLAND = "1";
       USE_WAYLAND_GRIM = "1";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+      XCURSOR_THEME = "BreezeX-RosePine-Linux";
     };
 
     programs.niri.enable = true;

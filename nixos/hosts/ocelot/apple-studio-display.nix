@@ -4,6 +4,11 @@
   ...
 }:
 {
+
+  environment.variables = {
+    XCURSOR_SIZE = 48;
+  };
+
   services.xserver.dpi = 218;
   services.displayManager.sddm.enableHidpi = true;
   services.displayManager.sddm.settings = {
