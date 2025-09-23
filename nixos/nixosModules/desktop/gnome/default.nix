@@ -34,6 +34,8 @@
       gnomeExtensions.blur-my-shell
     ];
     environment.gnome.excludePackages = with pkgs; [
+      gnome-tour
+      gnome-software
       gnome-contacts
       gnome-music
       gnome-maps
@@ -42,6 +44,7 @@
       simple-scan
       totem
       yelp
+      geary
     ];
   };
 }
