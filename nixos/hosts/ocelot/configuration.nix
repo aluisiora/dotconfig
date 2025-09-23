@@ -14,14 +14,18 @@
     extraPackages = with pkgs; [
       google-chrome
       slack
+      gnome-secrets
+      gnome-calculator
+      gnome-text-editor
+      papers
+      loupe
+      showtime
     ];
     sddm = {
       enable = true;
-      theme = "rose-pine";
+      theme = "purple_leaves";
     };
   };
-
-  services.upower.enable = lib.mkForce false;
 
   environment.variables = {
     EDITOR = "nvim";

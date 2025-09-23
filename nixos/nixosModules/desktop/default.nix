@@ -19,6 +19,11 @@
         default = [ ];
         description = "Extra apps to include";
       };
+      flathubScript = lib.mkOption {
+        type = lib.types.anything;
+        default = "";
+        description = "Flathub script that can adds more apps declaratively";
+      };
     };
   };
 
@@ -30,6 +35,7 @@
       path = [ pkgs.flatpak ];
       script = ''
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+        ${config.desktop.flathubScript}
       '';
     };
     services.xserver.enable = true;
@@ -38,7 +44,6 @@
         layout = "us,us";
         variant = "intl,";
         options = "";
-        # options = "grp:alt_space_toggle";
       };
     };
     fonts.enableDefaultPackages = true;

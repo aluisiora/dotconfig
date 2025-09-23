@@ -5,13 +5,10 @@
   ...
 }:
 let
-
-  sddm-theme =
-    if config.desktop.sddm.theme == "rose-pine" then
-      pkgs.callPackage ./pkgs/sddm-rose-pine.nix { }
-    else
-      # Themes: https://github.com/Keyitdev/sddm-astronaut-theme/tree/master/Themes
-      pkgs.sddm-astronaut.override { embeddedTheme = config.desktop.sddm.theme; };
+  sddm-astronaut-theme = pkgs.sddm-astronaut.override {
+    # Themes: https://github.com/Keyitdev/sddm-astronaut-theme/tree/master/Themes
+    embeddedTheme = config.desktop.sddm.theme;
+  };
 in
 {
   options = {
@@ -39,7 +36,7 @@ in
     '';
     services.displayManager.sddm = {
       enable = true;
-      theme = if config.desktop.sddm.theme == "rose-pine" then "rose-pine" else "sddm-astronaut-theme";
+      theme = "sddm-astronaut-theme";
       package = pkgs.kdePackages.sddm;
       extraPackages = with pkgs; [
         kdePackages.qtsvg
@@ -51,7 +48,7 @@ in
     environment.systemPackages = with pkgs; [
       rose-pine-cursor
       xorg.xrdb
-      sddm-theme
+      sddm-astronaut-theme
     ];
   };
 }

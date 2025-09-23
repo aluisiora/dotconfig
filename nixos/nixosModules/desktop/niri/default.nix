@@ -32,6 +32,7 @@
 
     services.gvfs.enable = true;
     services.dbus.enable = true;
+    services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
     fonts.packages = with pkgs; [
       lato
@@ -39,11 +40,15 @@
 
     environment.systemPackages = with pkgs; [
       rose-pine-cursor
+      gnome-themes-extra
+      hicolor-icon-theme
       nautilus
       file-roller
       gnome-font-viewer
       papers
       xwayland-satellite
+      xdg-user-dirs
+      xdg-user-dirs-gtk
     ];
   };
 }
