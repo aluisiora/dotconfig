@@ -35,11 +35,26 @@
       XCURSOR_THEME = "BreezeX-RosePine-Linux";
     };
 
-    programs.niri.enable = true;
-
     services.gvfs.enable = true;
     services.dbus.enable = true;
     services.xserver.desktopManager.runXdgAutostartIfNone = true;
+
+    programs.niri.enable = true;
+    programs.dconf = {
+      enable = true;
+      profiles.user.databases = [
+        {
+          settings = {
+            "org/gnome/desktop/interface" = {
+              color-scheme = "prefer-dark";
+              gtk-theme = "Adwaita";
+              icon-theme = "Adwaita";
+              cursor-theme = "BreezeX-RosePine-Linux";
+            };
+          };
+        }
+      ];
+    };
 
     fonts.packages = with pkgs; [
       lato

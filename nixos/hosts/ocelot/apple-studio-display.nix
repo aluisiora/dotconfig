@@ -5,16 +5,15 @@
 }:
 {
   environment.variables = {
-    XCURSOR_SIZE = 48;
+    GDK_SCALE = 1;
+    GDK_DPI_SCALE = 2;
+    QT_SCALE_FACTOR = 1;
+    QT_SCREEN_SCALE_FACTORS=1;
+    XCURSOR_SIZE = 24;
   };
 
   services.xserver.dpi = 218;
   services.displayManager.sddm.enableHidpi = true;
-  services.displayManager.sddm.settings = {
-    General = {
-      GreeterEnvironment = "QT_SCREEN_SCALE_FACTORS=2";
-    };
-  };
 
   fonts.fontconfig = {
     enable = true;
