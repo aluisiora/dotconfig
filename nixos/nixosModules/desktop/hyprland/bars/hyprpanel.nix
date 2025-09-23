@@ -5,7 +5,11 @@
   ...
 }:
 {
-  config = lib.mkIf (config.desktop.hyprland.bar == "hyprpanel") {
+  options = {
+    programs.hyprland.hyprpanel.enable = lib.mkEnableOption "hyprpanel bar";
+  };
+
+  config = lib.mkIf config.programs.hyprland.hyprpanel.enable {
     environment.systemPackages = with pkgs; [
       hyprpanel
       hyprshot

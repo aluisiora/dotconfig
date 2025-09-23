@@ -12,24 +12,7 @@
     ./bars/waybar.nix
   ];
 
-  options = {
-    desktop.hyprland = {
-      enable = lib.mkEnableOption "hyprland environment";
-      bar = lib.mkOption {
-        type = lib.types.enum [
-          "ii"
-          "caelestia"
-          "hyprpanel"
-          "waybar"
-          "none"
-        ];
-        default = "none";
-        description = "Bar configuration to use in Hyprland";
-      };
-    };
-  };
-
-  config = lib.mkIf config.desktop.hyprland.enable {
+  config = lib.mkIf config.programs.hyprland.enable {
     environment.variables = {
       NIXOS_OZONE_WL = "1";
       SDL_VIDEODRIVER = "wayland";
@@ -40,7 +23,6 @@
     };
 
     programs.hyprland = {
-      enable = true;
       xwayland.enable = true;
     };
     programs.hyprlock.enable = true;
@@ -109,6 +91,7 @@
     services.gvfs.enable = true;
     services.dbus.enable = true;
     services.gnome.gnome-keyring.enable = true;
+    services.displayManager.sddm.astronaut-embedded-theme = "japanese_aesthetic";
     services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
     environment.systemPackages = with pkgs; [

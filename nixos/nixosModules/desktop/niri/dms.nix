@@ -12,10 +12,10 @@ let
 in
 {
   options = {
-    desktop.niri.dms.enable = lib.mkEnableOption "Dank Material quickshell configuration";
+    programs.niri.dms.enable = lib.mkEnableOption "Dank Material quickshell configuration";
   };
 
-  config = lib.mkIf config.desktop.niri.dms.enable {
+  config = lib.mkIf config.programs.niri.dms.enable {
     fonts.packages = with pkgs; [
       fira-code
       inter

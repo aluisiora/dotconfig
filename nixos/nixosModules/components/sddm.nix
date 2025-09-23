@@ -7,22 +7,19 @@
 let
   sddm-astronaut-theme = pkgs.sddm-astronaut.override {
     # Themes: https://github.com/Keyitdev/sddm-astronaut-theme/tree/master/Themes
-    embeddedTheme = config.sddm.theme;
+    embeddedTheme = config.services.displayManager.sddm.astronaut-embedded-theme;
   };
 in
 {
   options = {
-    sddm = {
-      enable = lib.mkEnableOption "themed sddm";
-      theme = lib.mkOption {
-        type = lib.types.anything;
-        default = "astronaut";
-        description = "SDDM Theme";
-      };
+    services.displayManager.sddm.astronaut-embedded-theme = lib.mkOption {
+      type = lib.types.anything;
+      default = "astronaut";
+      description = "SDDM astronaut theme variant";
     };
   };
 
-  config = lib.mkIf config.sddm.enable {
+  config = lib.mkIf config.services.displayManager.sddm.enable {
     # Set cursor and turn display off
     services.xserver.displayManager.setupCommands = ''
       # Load cursor settings into the X server's resource database
@@ -35,7 +32,6 @@ in
       ${pkgs.xorg.xset}/bin/xset dpms 30 30 30
     '';
     services.displayManager.sddm = {
-      enable = true;
       theme = "sddm-astronaut-theme";
       package = pkgs.kdePackages.sddm;
       extraPackages = with pkgs; [

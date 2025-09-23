@@ -9,7 +9,6 @@
   # Custom modules
   desktop = {
     enable = true;
-    niri.enable = true;
     extraPackages = with pkgs; [
       google-chrome
       slack
@@ -20,6 +19,14 @@
     EDITOR = "nvim";
     ZDOTDIR = "$HOME/.config/zsh";
   };
+
+  # DisplayManager
+  services.displayManager.gdm.enable = true;
+
+  # DE
+  programs.niri.enable = true;
+  programs.niri.dms.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # System config
   nixpkgs.config.allowUnfree = true;

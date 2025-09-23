@@ -5,7 +5,11 @@
   ...
 }:
 {
-  config = lib.mkIf (config.desktop.hyprland.bar == "waybar") {
+  options = {
+    programs.hyprland.waybar.enable = lib.mkEnableOption "waybar configuration";
+  };
+
+  config = lib.mkIf config.programs.hyprland.waybar.enable {
     services.upower.enable = true;
     services.gnome.gnome-keyring.enable = true;
     services.geoclue2.enable = true;

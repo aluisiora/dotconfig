@@ -5,15 +5,7 @@
   ...
 }:
 {
-  options = {
-    desktop.gnome.enable = lib.mkEnableOption "gnome shell";
-  };
-
-  config = lib.mkIf config.desktop.gnome.enable {
-    services.displayManager.gdm.enable = true;
-    services.desktopManager.gnome.enable = true;
-    services.gnome.games.enable = false;
-
+  config = lib.mkIf config.services.desktopManager.gnome.enable {
     environment.variables = {
       NIXOS_OZONE_WL = "1";
       SDL_VIDEODRIVER = "wayland";
@@ -22,8 +14,34 @@
       USE_WAYLAND_GRIM = "1";
     };
 
+    services.gnome.games.enable = false;
+    services.gnome.core-developer-tools.enable = false;
+
+    qt = {
+      enable = true;
+      platformTheme = "gnome";
+      style = "adwaita-dark";
+    };
+
+    services.udev.packages = with pkgs; [
+      gnome-settings-daemon
+    ];
+
     environment.systemPackages = with pkgs; [
+      showtime
       gnomeExtensions.appindicator
+      gnomeExtensions.paperwm
+      gnomeExtensions.blur-my-shell
+    ];
+    environment.gnome.excludePackages = with pkgs; [
+      gnome-contacts
+      gnome-music
+      gnome-maps
+      gnome-logs
+      epiphany
+      simple-scan
+      totem
+      yelp
     ];
   };
 }

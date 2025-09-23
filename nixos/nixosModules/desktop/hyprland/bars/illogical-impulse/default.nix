@@ -15,7 +15,11 @@ let
   oneui4-icons = pkgs.callPackage ./pkgs/oneui4-icons.nix { };
 in
 {
-  config = lib.mkIf (config.desktop.hyprland.bar == "ii") {
+  options = {
+    programs.hyprland.ii.enable = lib.mkEnableOption "illogical-impulse shell";
+  };
+
+  config = lib.mkIf config.programs.hyprland.ii.enable {
     i18n.inputMethod = {
       enable = true;
       type = "fcitx5";

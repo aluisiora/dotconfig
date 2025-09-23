@@ -8,22 +8,9 @@
   imports = [
     ./waybar.nix
     ./dms.nix
-    ../../components/sddm.nix
   ];
 
-  options = {
-    desktop.niri = {
-      enable = lib.mkEnableOption "niri environment";
-    };
-  };
-
-  config = lib.mkIf config.desktop.niri.enable {
-    desktop.niri.dms.enable = true;
-    sddm = {
-      enable = true;
-      theme = "purple_leaves";
-    };
-
+  config = lib.mkIf config.programs.niri.enable {
     environment.variables = {
       NIXOS_OZONE_WL = "1";
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
@@ -37,9 +24,9 @@
 
     services.gvfs.enable = true;
     services.dbus.enable = true;
+    services.displayManager.sddm.astronaut-embedded-theme = "purple_leaves";
     services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
-    programs.niri.enable = true;
     programs.dconf = {
       enable = true;
       profiles.user.databases = [
@@ -68,6 +55,7 @@
       gnome-calculator
       gnome-text-editor
       hicolor-icon-theme
+      decibels
       nautilus
       file-roller
       papers
