@@ -121,7 +121,7 @@ output "DP-3" {
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 10
+    gaps 12
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -268,10 +268,10 @@ layout {
     // Left and right struts will cause the next window to the side to always be visible.
     // Top and bottom struts will simply add outer gaps in addition to the area occupied by
     // layer-shell panels and regular gaps.
-    struts {
+    /-struts {
         // left -7
         // right -7
-        // top 64
+        // top -11
         // bottom -7
     }
 }
@@ -291,6 +291,10 @@ spawn-at-startup "dms-shell"
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
     skip-at-startup
+}
+
+config-notification {
+    disable-failed
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
