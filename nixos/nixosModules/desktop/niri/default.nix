@@ -8,6 +8,7 @@
   imports = [
     ./waybar.nix
     ./dms.nix
+    ../../components/sddm.nix
   ];
 
   options = {
@@ -17,6 +18,12 @@
   };
 
   config = lib.mkIf config.desktop.niri.enable {
+    desktop.niri.dms.enable = true;
+    sddm = {
+      enable = true;
+      theme = "purple_leaves";
+    };
+
     environment.variables = {
       NIXOS_OZONE_WL = "1";
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
@@ -41,11 +48,16 @@
     environment.systemPackages = with pkgs; [
       rose-pine-cursor
       gnome-themes-extra
+      gnome-font-viewer
+      gnome-secrets
+      gnome-calculator
+      gnome-text-editor
       hicolor-icon-theme
       nautilus
       file-roller
-      gnome-font-viewer
       papers
+      loupe
+      showtime
       xwayland-satellite
       xdg-user-dirs
       xdg-user-dirs-gtk

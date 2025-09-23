@@ -4,7 +4,7 @@
   ...
 }:
 {
-  imports = [ ./desktop ./components ];
+  imports = [ ./desktop ];
 
   environment.variables = {
     XDG_CONFIG_HOME = "$HOME/.config";

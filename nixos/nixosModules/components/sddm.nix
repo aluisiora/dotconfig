@@ -7,12 +7,12 @@
 let
   sddm-astronaut-theme = pkgs.sddm-astronaut.override {
     # Themes: https://github.com/Keyitdev/sddm-astronaut-theme/tree/master/Themes
-    embeddedTheme = config.desktop.sddm.theme;
+    embeddedTheme = config.sddm.theme;
   };
 in
 {
   options = {
-    desktop.sddm = {
+    sddm = {
       enable = lib.mkEnableOption "themed sddm";
       theme = lib.mkOption {
         type = lib.types.anything;
@@ -22,7 +22,7 @@ in
     };
   };
 
-  config = lib.mkIf config.desktop.sddm.enable {
+  config = lib.mkIf config.sddm.enable {
     # Set cursor and turn display off
     services.xserver.displayManager.setupCommands = ''
       # Load cursor settings into the X server's resource database

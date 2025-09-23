@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -10,21 +10,10 @@
   desktop = {
     enable = true;
     niri.enable = true;
-    niri.dms.enable = true;
     extraPackages = with pkgs; [
       google-chrome
       slack
-      gnome-secrets
-      gnome-calculator
-      gnome-text-editor
-      papers
-      loupe
-      showtime
     ];
-    sddm = {
-      enable = true;
-      theme = "purple_leaves";
-    };
   };
 
   environment.variables = {
