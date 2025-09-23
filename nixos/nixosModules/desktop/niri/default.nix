@@ -61,6 +61,7 @@
       xwayland-satellite
       xdg-user-dirs
       xdg-user-dirs-gtk
+      wev
     ];
   };
 }
