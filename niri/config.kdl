@@ -121,7 +121,7 @@ output "DP-3" {
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 12
+    gaps 10
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -269,10 +269,10 @@ layout {
     // Top and bottom struts will simply add outer gaps in addition to the area occupied by
     // layer-shell panels and regular gaps.
     struts {
-        left -7
-        right -7
+        // left -7
+        // right -7
         // top 64
-        bottom -7
+        // bottom -7
     }
 }
 
@@ -317,7 +317,7 @@ animations {
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
     // slowdown 3.0
-    slowdown 0.6
+    slowdown 0.5
 }
 
 // Window rules let you adjust behavior for individual windows.
@@ -345,7 +345,7 @@ window-rule {
 
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
-/-window-rule {
+window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
 
@@ -357,10 +357,10 @@ window-rule {
 
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
-window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
-}
+// window-rule {
+//     geometry-corner-radius 12
+//     clip-to-geometry true
+// }
 
 binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
