@@ -4,14 +4,6 @@
   ...
 }:
 {
-  environment.variables = {
-    GDK_SCALE = 1;
-    GDK_DPI_SCALE = 2;
-    QT_SCALE_FACTOR = 1;
-    QT_SCREEN_SCALE_FACTORS=1;
-    XCURSOR_SIZE = 24;
-  };
-
   services.xserver.dpi = 218;
   services.displayManager.sddm.enableHidpi = true;
 
