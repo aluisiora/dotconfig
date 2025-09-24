@@ -6,11 +6,13 @@ config.font = wezterm.font("JetBrains Mono")
 config.font_size = 11.0
 config.harfbuzz_features = { "calt = 0", "clig = 0", "liga = 0" }
 config.window_close_confirmation = "NeverPrompt"
+config.window_decorations = "TITLE|RESIZE"
 
 for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
 	if gpu.backend == "Vulkan" and gpu.device_type == "IntegratedGpu" then
 		config.webgpu_preferred_adapter = gpu
-		config.front_end = "WebGpu"
+		-- config.front_end = "WebGpu" -- still broken
+		config.front_end = "OpenGL"
 		break
 	end
 end
