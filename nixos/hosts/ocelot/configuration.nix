@@ -18,6 +18,7 @@
   environment.variables = {
     EDITOR = "nvim";
     ZDOTDIR = "$HOME/.config/zsh";
+    DBX_CONTAINER_MANAGER = "docker";
   };
 
   # DisplayManager
