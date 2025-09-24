@@ -68,6 +68,7 @@
     distrobox
     fastfetch
     # Dev
+    devenv
     gnumake
     gcc
     cargo
