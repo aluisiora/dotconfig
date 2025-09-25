@@ -35,26 +35,15 @@ setopt hist_find_no_dups
 # Add plugins
 zinit ice depth=1
 zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
-
-zinit ice lucid wait
-zinit snippet OMZP::fzf
-
-zi ice as"completion"
-zi snippet OMZP::docker/completions/_docker
 
 # Load completions
 autoload -U compinit && compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-$ZSH_VERSION
 zinit cdreplay -q
 
 # Completions
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
-zstyle ':completion:*:*:docker:*' option-stacking yes
-zstyle ':completion:*:*:docker-*:*' option-stacking yes
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
+source <(carapace _carapace)
 
 # Aliases
 alias ls="ls --color"
@@ -73,3 +62,7 @@ bindkey -v
 
 # Keybindings
 bindkey -s '^e' 'tmux-sessionizer^M'
+
+# NVM
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
