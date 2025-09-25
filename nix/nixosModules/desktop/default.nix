@@ -42,7 +42,7 @@
     services.xserver = {
       xkb = {
         layout = "us,us";
-        variant = "intl,";
+        variant = ",intl";
         options = "";
       };
     };
