@@ -56,6 +56,7 @@
       "docker"
     ];
   };
+  nix.settings.trusted-users = [ "root" "aluisio" ];
   environment.systemPackages = with pkgs; [
     # TUI apps
     tmux
