@@ -35,6 +35,7 @@
     diff-so-fancy
     tldr
     nh
+    carapace
   ];
 
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
