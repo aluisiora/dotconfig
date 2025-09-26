@@ -47,6 +47,7 @@
   services.openssh.enable = true;
   users.defaultUserShell = pkgs.zsh;
   users.users.aluisio = {
+    description = "Aluisio Amaral";
     isNormalUser = true;
     extraGroups = [
       "wheel"
@@ -68,6 +69,7 @@
     # CLI apps
     distrobox
     fastfetch
+    zoxide
     # Dev
     devenv
     gnumake
