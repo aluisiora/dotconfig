@@ -32,6 +32,8 @@
       gnomeExtensions.appindicator
       gnomeExtensions.paperwm
       gnomeExtensions.blur-my-shell
+      gnomeExtensions.hibernate-status-button
+      gnomeExtensions.keep-awake
     ];
     environment.gnome.excludePackages = with pkgs; [
       gnome-tour
