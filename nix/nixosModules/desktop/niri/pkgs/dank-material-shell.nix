@@ -6,7 +6,7 @@
 }:
 stdenv.mkDerivation rec {
   pname = "dank-material-shell";
-  version = "0bd9a4f860a1163bd304eb4021620551c339dcb6";
+  version = "92bb5b90aab82ee0af96ac21832f7fb8f223f09d";
 
   src = fetchFromGitHub {
     owner = "AvengeMedia";
